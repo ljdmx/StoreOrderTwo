@@ -137,8 +137,8 @@ const StoreApp: React.FC = () => {
 
   const renderHome = () => (
     <div className="flex flex-col h-full bg-[#F7F8FA] font-sans">
-      {/* Sticky Header - Frosted Glass */}
-      <div className="px-6 pt-14 pb-4 bg-white/80 backdrop-blur-xl sticky top-0 z-30 transition-all shadow-sm border-b border-gray-50/50">
+      {/* Sticky Header - Frosted Glass & Floating */}
+      <div className="px-6 pt-14 pb-4 bg-white/80 backdrop-blur-xl sticky top-0 z-30 transition-all shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
         <div className="flex justify-between items-center mb-4">
            <div>
              <h1 className="text-2xl font-extrabold text-gray-900 tracking-tight leading-none">您好，昆明门店</h1>
@@ -152,7 +152,8 @@ const StoreApp: React.FC = () => {
            </div>
         </div>
         
-        <div className="bg-gray-100/50 rounded-2xl flex items-center px-4 py-3.5 transition-all focus-within:bg-white focus-within:ring-2 focus-within:ring-[#00B42A] focus-within:shadow-[0_4px_15px_rgba(0,180,42,0.1)] border border-transparent focus-within:border-transparent">
+        {/* Floating Search */}
+        <div className="bg-gray-100/60 rounded-2xl flex items-center px-4 py-3.5 transition-all focus-within:bg-white focus-within:ring-2 focus-within:ring-[#00B42A]/10 focus-within:shadow-[0_8px_20px_rgba(0,180,42,0.08)] border border-transparent focus-within:border-transparent">
            <Search size={18} className="text-gray-400 mr-3" />
            <input type="text" placeholder="搜索商品..." className="flex-1 bg-transparent outline-none text-sm text-gray-900 placeholder:text-gray-400" />
         </div>
@@ -197,7 +198,7 @@ const StoreApp: React.FC = () => {
            </div>
         </div>
 
-        {/* Categories - Soft Tiles */}
+        {/* Categories - Soft Tiles with Breathing Glow */}
         <div className="mt-10">
            <div className="flex justify-between items-center mb-5 px-1">
               <h3 className="font-bold text-gray-900 text-lg">常用分类</h3>
@@ -211,8 +212,9 @@ const StoreApp: React.FC = () => {
                   { name: '肉类', icon: '🥩', bg: 'bg-red-50', text: 'text-red-600', border: 'border-red-100' }
               ].map((cat, i) => (
                  <div key={cat.name} className="flex flex-col items-center gap-3 cursor-pointer group" onClick={() => { setSelectedCategory(i===1?'叶菜类':'全部'); setActiveTab('shop'); }}>
-                    <div className={`w-[72px] h-[72px] rounded-[24px] flex items-center justify-center text-3xl transition-all duration-300 group-active:scale-90 ${cat.bg} border ${cat.border} shadow-[0_4px_10px_rgba(0,0,0,0.02)] group-hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] group-hover:-translate-y-1`}>
-                        <span className="group-hover:scale-110 transition-transform duration-500 filter drop-shadow-sm">{cat.icon}</span>
+                    <div className={`w-[72px] h-[72px] rounded-[24px] flex items-center justify-center text-3xl transition-all duration-300 group-active:scale-90 ${cat.bg} border ${cat.border} shadow-[0_4px_10px_rgba(0,0,0,0.02)] group-hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] group-hover:-translate-y-1 relative overflow-hidden`}>
+                        <div className="absolute inset-0 bg-white/40 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <span className="group-hover:scale-110 transition-transform duration-500 filter drop-shadow-sm relative z-10">{cat.icon}</span>
                     </div>
                     <span className="text-xs text-gray-500 font-bold group-hover:text-gray-900 transition-colors">{cat.name}</span>
                  </div>
@@ -254,7 +256,7 @@ const StoreApp: React.FC = () => {
   const renderShop = () => (
     <div className="flex flex-col h-full bg-white">
       {/* Header */}
-      <div className="pt-14 pb-4 px-4 bg-white/95 backdrop-blur-xl flex items-center justify-between z-20 sticky top-0 border-b border-gray-50">
+      <div className="pt-14 pb-4 px-4 bg-white/95 backdrop-blur-xl flex items-center justify-between z-20 sticky top-0 border-b border-gray-50/50">
          <button onClick={() => setActiveTab('home')} className="p-2 -ml-2 text-gray-800 active:text-gray-400 transition-colors hover:bg-gray-50 rounded-full"><ChevronLeft size={24} /></button>
          <h1 className="text-base font-bold text-gray-900">商品下单</h1>
          <div className="p-2 -mr-2 text-gray-800 hover:bg-gray-50 rounded-full cursor-pointer"><Search size={22} strokeWidth={2} /></div>
@@ -309,7 +311,7 @@ const StoreApp: React.FC = () => {
                                 <button onClick={() => updateCart(p, -1)} className="w-7 h-7 rounded-full bg-white shadow-sm flex items-center justify-center text-gray-600 active:scale-90 transition-transform hover:bg-gray-50">
                                    <Minus size={14} strokeWidth={3} />
                                 </button>
-                                <span className="text-sm font-bold w-4 text-center tabular-nums text-gray-900">{qty}</span>
+                                <span className="text-sm font-bold w-4 text-center tabular-nums text-gray-900 animate-in zoom-in duration-200">{qty}</span>
                                 <button onClick={() => updateCart(p, 1)} className="w-7 h-7 rounded-full bg-[#00B42A] flex items-center justify-center text-white active:scale-90 transition-transform shadow-lg shadow-green-500/30 hover:bg-[#009C25]">
                                    <Plus size={14} strokeWidth={3} />
                                 </button>
