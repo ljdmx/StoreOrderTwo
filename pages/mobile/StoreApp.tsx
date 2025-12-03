@@ -79,36 +79,40 @@ const StoreApp: React.FC = () => {
     return (
       <div className="flex flex-col h-full bg-[#F7F8FA] relative overflow-hidden font-sans selection:bg-green-100">
         <div className="flex-1 flex flex-col items-center justify-center p-8 z-10 animate-in fade-in duration-700">
-           <div className="w-24 h-24 bg-white rounded-[2rem] flex items-center justify-center mb-8 shadow-[0_20px_40px_rgba(0,180,42,0.15)] ring-1 ring-green-50">
+           <div className="w-24 h-24 bg-white rounded-[2rem] flex items-center justify-center mb-8 shadow-[0_20px_40px_rgba(0,180,42,0.15)] ring-1 ring-green-50/50 transform transition-transform hover:scale-105 duration-500">
               <ShoppingBag size={40} className="text-[#00B42A]" strokeWidth={2} />
            </div>
            <h1 className="text-2xl font-extrabold text-gray-900 mb-2 tracking-tight">日新达门店端</h1>
-           <p className="text-gray-400 text-sm text-center mb-12">高效订货 · 智能管理</p>
+           <p className="text-gray-400 text-sm text-center mb-12 font-medium tracking-wide">高效订货 · 智能管理</p>
            
            {!isBinding ? (
              <div className="w-full space-y-4">
                 <div className="space-y-4 mb-8">
-                  <input type="text" placeholder="账号 / 手机号" className="w-full bg-white border-none rounded-2xl px-5 py-4 text-sm shadow-sm focus:ring-2 focus:ring-[#00B42A]/20 transition-all outline-none placeholder:text-gray-300" />
-                  <input type="password" placeholder="密码" className="w-full bg-white border-none rounded-2xl px-5 py-4 text-sm shadow-sm focus:ring-2 focus:ring-[#00B42A]/20 transition-all outline-none placeholder:text-gray-300" />
+                  <div className="group relative">
+                    <input type="text" placeholder="账号 / 手机号" className="w-full bg-white border-none rounded-2xl px-5 py-4 text-sm shadow-[0_4px_15px_rgba(0,0,0,0.02)] focus:ring-2 focus:ring-[#00B42A] focus:shadow-lg transition-all outline-none placeholder:text-gray-300" />
+                  </div>
+                  <div className="group relative">
+                    <input type="password" placeholder="密码" className="w-full bg-white border-none rounded-2xl px-5 py-4 text-sm shadow-[0_4px_15px_rgba(0,0,0,0.02)] focus:ring-2 focus:ring-[#00B42A] focus:shadow-lg transition-all outline-none placeholder:text-gray-300" />
+                  </div>
                 </div>
                 
                 <button 
                   onClick={() => setIsLoggedIn(true)}
-                  className="w-full bg-[#00B42A] text-white py-4 rounded-2xl font-bold text-base shadow-lg shadow-green-500/30 active:scale-[0.98] transition-all hover:bg-[#009C25]"
+                  className="w-full bg-[#00B42A] text-white py-4 rounded-2xl font-bold text-base shadow-[0_10px_25px_rgba(0,180,42,0.3)] active:scale-[0.98] transition-all hover:bg-[#009C25] hover:shadow-[0_15px_30px_rgba(0,180,42,0.4)]"
                 >
                   登录
                 </button>
-                <div className="text-center pt-2">
+                <div className="text-center pt-4">
                   <button 
                     onClick={() => setIsBinding(true)}
-                    className="text-[#00B42A] text-sm font-medium hover:text-[#009C25] transition-colors flex items-center justify-center gap-1 mx-auto"
+                    className="text-[#00B42A] text-sm font-bold bg-green-50/50 px-4 py-2 rounded-full hover:bg-green-100 transition-colors flex items-center justify-center gap-1.5 mx-auto"
                   >
                     <QrCode size={16} /> 扫码绑定新设备
                   </button>
                 </div>
              </div>
            ) : (
-             <div className="w-full bg-white p-8 rounded-[2rem] shadow-[0_20px_40px_rgba(0,0,0,0.08)] text-center animate-in zoom-in duration-300">
+             <div className="w-full bg-white p-8 rounded-[2rem] shadow-[0_20px_60px_rgba(0,0,0,0.08)] text-center animate-in zoom-in duration-300 border border-gray-50">
                 <h3 className="font-bold text-gray-900 text-lg mb-6">绑定设备</h3>
                 <div className="w-56 h-56 bg-gray-900 mx-auto rounded-3xl flex items-center justify-center mb-6 relative overflow-hidden group cursor-pointer shadow-inner">
                     <QrCode size={120} className="text-white/20 group-hover:scale-110 transition-transform duration-500" />
@@ -121,7 +125,7 @@ const StoreApp: React.FC = () => {
                     />
                     <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-400 to-transparent opacity-80 animate-[scan_2s_infinite]"></div>
                 </div>
-                <button onClick={() => setIsBinding(false)} className="text-gray-400 text-sm hover:text-gray-600 transition-colors">取消</button>
+                <button onClick={() => setIsBinding(false)} className="text-gray-400 text-sm font-medium hover:text-gray-600 transition-colors">取消</button>
              </div>
            )}
         </div>
@@ -133,35 +137,35 @@ const StoreApp: React.FC = () => {
 
   const renderHome = () => (
     <div className="flex flex-col h-full bg-[#F7F8FA] font-sans">
-      {/* Sticky Header - Clean & Minimal */}
-      <div className="px-6 pt-14 pb-2 bg-white/90 backdrop-blur-xl sticky top-0 z-30 transition-all shadow-sm">
+      {/* Sticky Header - Frosted Glass */}
+      <div className="px-6 pt-14 pb-4 bg-white/80 backdrop-blur-xl sticky top-0 z-30 transition-all shadow-sm border-b border-gray-50/50">
         <div className="flex justify-between items-center mb-4">
            <div>
              <h1 className="text-2xl font-extrabold text-gray-900 tracking-tight leading-none">您好，昆明门店</h1>
-             <div className="flex items-center gap-1.5 text-gray-400 text-xs mt-1.5 font-medium">
-               <MapPin size={12} strokeWidth={2.5} /> <span className="truncate max-w-[200px]">五华区翠湖路88号</span>
+             <div className="flex items-center gap-1.5 text-gray-500 text-xs mt-1.5 font-medium bg-white/50 w-fit px-2 py-1 rounded-full border border-gray-100/50">
+               <MapPin size={12} strokeWidth={2.5} className="text-[#00B42A]" /> <span className="truncate max-w-[200px]">五华区翠湖路88号</span>
              </div>
            </div>
-           <div className="relative p-2.5 bg-gray-50 rounded-full active:scale-95 transition-transform cursor-pointer hover:bg-gray-100">
-             <Bell size={20} className="text-gray-600" strokeWidth={2} />
+           <div className="relative p-2.5 bg-white border border-gray-100 rounded-full active:scale-90 transition-transform cursor-pointer hover:bg-gray-50 shadow-sm group">
+             <Bell size={20} className="text-gray-600 group-hover:text-[#00B42A] transition-colors" strokeWidth={2} />
              <span className="absolute top-2 right-2.5 w-2 h-2 bg-[#F53F3F] rounded-full border border-white"></span>
            </div>
         </div>
         
-        <div className="bg-gray-50 rounded-2xl flex items-center px-4 py-3.5 transition-all focus-within:bg-white focus-within:ring-2 focus-within:ring-[#00B42A]/10 focus-within:shadow-sm">
+        <div className="bg-gray-100/50 rounded-2xl flex items-center px-4 py-3.5 transition-all focus-within:bg-white focus-within:ring-2 focus-within:ring-[#00B42A] focus-within:shadow-[0_4px_15px_rgba(0,180,42,0.1)] border border-transparent focus-within:border-transparent">
            <Search size={18} className="text-gray-400 mr-3" />
            <input type="text" placeholder="搜索商品..." className="flex-1 bg-transparent outline-none text-sm text-gray-900 placeholder:text-gray-400" />
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-6 pb-28 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
-        {/* Status Card - Elevated Cleanliness */}
-        <div className="mt-6 bg-white rounded-[32px] p-1 relative shadow-[0_15px_40px_rgba(0,0,0,0.04)] overflow-hidden group">
-           <div className="bg-white rounded-[28px] p-6 border border-gray-50 relative z-10">
-               <div className="flex justify-between items-start mb-6">
+      <div className="flex-1 overflow-y-auto px-6 pb-28 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] scroll-smooth">
+        {/* Status Card - Soft Shadow & Diffused Light */}
+        <div className="mt-6 bg-white rounded-[32px] p-1 relative shadow-[0_20px_40px_-10px_rgba(0,0,0,0.06)] overflow-hidden group hover:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.1)] transition-shadow duration-500">
+           <div className="bg-white rounded-[28px] p-6 relative z-10">
+               <div className="flex justify-between items-start mb-8">
                   <div>
-                    <h3 className="font-extrabold text-gray-900 text-lg">今日订货</h3>
-                    <div className="flex items-center gap-1.5 text-xs text-gray-400 font-medium mt-1">
+                    <h3 className="font-extrabold text-gray-900 text-lg tracking-tight">今日订货</h3>
+                    <div className="flex items-center gap-1.5 text-xs text-gray-400 font-bold mt-1 uppercase tracking-wide">
                         <Clock size={12} /> 6月 24日 · <span className="text-[#00B42A]">营业中</span>
                     </div>
                   </div>
@@ -170,72 +174,73 @@ const StoreApp: React.FC = () => {
                <div className="flex justify-between items-center mb-8 px-2">
                   {[
                       { label: '未下单', count: 1, color: 'text-gray-300', dot: 'bg-gray-200' },
-                      { label: '审核中', count: 3, color: 'text-blue-500', dot: 'bg-blue-500' },
-                      { label: '已审核', count: 12, color: 'text-[#00B42A]', dot: 'bg-[#00B42A]' }
+                      { label: '审核中', count: 3, color: 'text-blue-500', dot: 'bg-blue-500', glow: 'shadow-[0_0_15px_rgba(59,130,246,0.3)]' },
+                      { label: '已审核', count: 12, color: 'text-[#00B42A]', dot: 'bg-[#00B42A]', glow: 'shadow-[0_0_15px_rgba(0,180,42,0.3)]' }
                   ].map((item, i) => (
-                      <div key={i} className="flex flex-col items-center">
+                      <div key={i} className="flex flex-col items-center group/item cursor-default">
                          <div className="relative">
-                            <span className={`text-2xl font-extrabold ${item.color} tracking-tight`}>{item.count}</span>
-                            {item.count > 0 && item.label !== '未下单' && <div className={`absolute -top-1 -right-2 w-1.5 h-1.5 rounded-full ${item.dot} ring-2 ring-white`}></div>}
+                            <span className={`text-3xl font-black ${item.color} tracking-tight transition-transform group-hover/item:scale-110 duration-300 inline-block`}>{item.count}</span>
+                            {item.count > 0 && item.label !== '未下单' && <div className={`absolute -top-1 -right-2 w-2 h-2 rounded-full ${item.dot} ring-2 ring-white ${item.glow}`}></div>}
                          </div>
-                         <span className="text-[11px] text-gray-400 font-medium mt-1">{item.label}</span>
+                         <span className="text-[11px] text-gray-400 font-bold mt-1">{item.label}</span>
                       </div>
                   ))}
                </div>
 
                <button 
                  onClick={() => setActiveTab('shop')}
-                 className="w-full bg-[#00B42A] text-white py-4 rounded-2xl font-bold text-base shadow-lg shadow-green-500/30 active:scale-[0.98] transition-all flex items-center justify-center gap-2 hover:bg-[#009C25]"
+                 className="w-full bg-[#00B42A] text-white py-4 rounded-2xl font-bold text-base shadow-[0_10px_20px_rgba(0,180,42,0.25)] active:scale-[0.98] transition-all flex items-center justify-center gap-2 hover:bg-[#009C25] hover:shadow-[0_15px_30px_rgba(0,180,42,0.35)] relative overflow-hidden group/btn"
                >
-                 开始订货 <ArrowRight size={18} />
+                 <span className="relative z-10 flex items-center gap-2">开始订货 <ArrowRight size={18} /></span>
+                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300"></div>
                </button>
            </div>
         </div>
 
-        {/* Categories - Breathing Icons */}
+        {/* Categories - Soft Tiles */}
         <div className="mt-10">
            <div className="flex justify-between items-center mb-5 px-1">
               <h3 className="font-bold text-gray-900 text-lg">常用分类</h3>
-              <span className="text-gray-400 text-xs font-medium active:text-[#00B42A] transition-colors cursor-pointer hover:text-gray-600" onClick={() => setActiveTab('shop')}>全部分类</span>
+              <span className="text-gray-400 text-xs font-bold active:text-[#00B42A] transition-colors cursor-pointer hover:text-gray-600 bg-white px-3 py-1.5 rounded-full shadow-sm border border-gray-100" onClick={() => setActiveTab('shop')}>全部分类</span>
            </div>
            <div className="grid grid-cols-4 gap-4">
               {[
-                  { name: '水果', icon: '🍇', bg: 'bg-purple-50', text: 'text-purple-600' },
-                  { name: '蔬菜', icon: '🥦', bg: 'bg-green-50', text: 'text-green-600' },
-                  { name: '乳制品', icon: '🥛', bg: 'bg-blue-50', text: 'text-blue-600' },
-                  { name: '肉类', icon: '🥩', bg: 'bg-red-50', text: 'text-red-600' }
+                  { name: '水果', icon: '🍇', bg: 'bg-purple-50', text: 'text-purple-600', border: 'border-purple-100' },
+                  { name: '蔬菜', icon: '🥦', bg: 'bg-green-50', text: 'text-green-600', border: 'border-green-100' },
+                  { name: '乳制品', icon: '🥛', bg: 'bg-blue-50', text: 'text-blue-600', border: 'border-blue-100' },
+                  { name: '肉类', icon: '🥩', bg: 'bg-red-50', text: 'text-red-600', border: 'border-red-100' }
               ].map((cat, i) => (
-                 <div key={cat.name} className="flex flex-col items-center gap-2 cursor-pointer group" onClick={() => { setSelectedCategory(i===1?'叶菜类':'全部'); setActiveTab('shop'); }}>
-                    <div className={`w-[72px] h-[72px] rounded-[24px] flex items-center justify-center text-2xl transition-all duration-300 group-active:scale-95 ${cat.bg} group-hover:shadow-md group-hover:-translate-y-1`}>
-                        <span className="group-hover:scale-110 transition-transform">{cat.icon}</span>
+                 <div key={cat.name} className="flex flex-col items-center gap-3 cursor-pointer group" onClick={() => { setSelectedCategory(i===1?'叶菜类':'全部'); setActiveTab('shop'); }}>
+                    <div className={`w-[72px] h-[72px] rounded-[24px] flex items-center justify-center text-3xl transition-all duration-300 group-active:scale-90 ${cat.bg} border ${cat.border} shadow-[0_4px_10px_rgba(0,0,0,0.02)] group-hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] group-hover:-translate-y-1`}>
+                        <span className="group-hover:scale-110 transition-transform duration-500 filter drop-shadow-sm">{cat.icon}</span>
                     </div>
-                    <span className="text-xs text-gray-500 font-medium group-hover:text-gray-900 transition-colors">{cat.name}</span>
+                    <span className="text-xs text-gray-500 font-bold group-hover:text-gray-900 transition-colors">{cat.name}</span>
                  </div>
               ))}
            </div>
         </div>
 
-        {/* Recommended - Clean Cards */}
+        {/* Recommended - Immersive Cards */}
         <div className="mt-10 pb-6">
            <h3 className="font-bold text-gray-900 text-lg mb-5 px-1">热销推荐</h3>
            <div className="grid grid-cols-2 gap-4">
               {MOCK_PRODUCTS.slice(0, 2).map((p, i) => (
-                 <div key={p.id} className="bg-white p-3 rounded-[24px] shadow-[0_8px_20px_rgba(0,0,0,0.03)] active:scale-[0.98] transition-all cursor-pointer hover:shadow-[0_12px_25px_rgba(0,0,0,0.06)] group border border-gray-50" onClick={() => updateCart(p, 1)}>
-                    <div className="aspect-square bg-[#F7F8FA] rounded-[20px] mb-3 overflow-hidden relative">
+                 <div key={p.id} className="bg-white p-3 rounded-[28px] shadow-[0_10px_30px_-10px_rgba(0,0,0,0.05)] active:scale-[0.98] transition-all cursor-pointer hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.08)] group border border-gray-50/50" onClick={() => updateCart(p, 1)}>
+                    <div className="aspect-square bg-[#F7F8FA] rounded-[24px] mb-4 overflow-hidden relative isolate">
                        <img src={p.imageUrl} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 mix-blend-multiply" alt="" />
                        {i===0 && (
-                           <div className="absolute top-2 left-2 bg-black/80 backdrop-blur-md text-white text-[10px] font-bold px-2 py-1 rounded-lg">
+                           <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-lg shadow-lg">
                              TOP 1
                            </div>
                        )}
-                       <div className="absolute bottom-2 right-2 w-8 h-8 bg-white rounded-full flex items-center justify-center text-[#00B42A] opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0 shadow-sm">
-                          <Plus size={16} strokeWidth={3} />
+                       <div className="absolute bottom-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center text-[#00B42A] opacity-0 group-hover:opacity-100 transition-all translate-y-4 group-hover:translate-y-0 shadow-[0_4px_15px_rgba(0,0,0,0.1)] hover:bg-[#00B42A] hover:text-white">
+                          <Plus size={20} strokeWidth={3} />
                        </div>
                     </div>
-                    <div className="px-1.5 pb-1">
-                        <div className="font-bold text-gray-900 mb-1 truncate text-[15px]">{p.name}</div>
+                    <div className="px-1.5 pb-2">
+                        <div className="font-bold text-gray-900 mb-1.5 truncate text-[15px]">{p.name}</div>
                         <div className="flex justify-between items-end">
-                            <span className="text-gray-900 font-extrabold text-lg"><span className="text-xs font-normal text-gray-400 mr-0.5">¥</span>{p.price}</span>
+                            <span className="text-gray-900 font-black text-xl tracking-tight"><span className="text-xs font-bold text-gray-400 mr-0.5">¥</span>{p.price}</span>
                         </div>
                     </div>
                  </div>
@@ -256,16 +261,16 @@ const StoreApp: React.FC = () => {
       </div>
 
       <div className="flex-1 flex overflow-hidden relative">
-         {/* Sidebar - Capsule Style */}
+         {/* Sidebar - Capsule Indicators */}
          <div className="w-[92px] bg-[#F7F8FA] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] py-4 space-y-2">
             {categories.map(cat => (
                <div 
                  key={cat} 
                  onClick={() => setSelectedCategory(cat)}
-                 className={`mx-2 rounded-2xl py-4 flex flex-col items-center justify-center gap-1.5 transition-all cursor-pointer relative ${selectedCategory === cat ? 'bg-white shadow-sm ring-1 ring-gray-100' : 'text-gray-400 hover:bg-gray-100/50'}`}
+                 className={`mx-2 rounded-2xl py-4 flex flex-col items-center justify-center gap-1.5 transition-all cursor-pointer relative group ${selectedCategory === cat ? 'bg-white shadow-[0_4px_12px_rgba(0,0,0,0.04)]' : 'text-gray-400 hover:bg-white/50'}`}
                >
-                  <div className={`w-1.5 h-1.5 rounded-full mb-1 transition-all ${selectedCategory === cat ? 'bg-[#00B42A] scale-125' : 'bg-transparent'}`}></div>
-                  <span className={`text-[11px] font-medium transition-colors ${selectedCategory === cat ? 'text-gray-900 font-bold' : 'text-gray-400'}`}>{cat}</span>
+                  <div className={`w-1.5 h-1.5 rounded-full mb-1 transition-all duration-300 ${selectedCategory === cat ? 'bg-[#00B42A] scale-150 shadow-[0_0_8px_#00B42A]' : 'bg-transparent group-hover:bg-gray-200'}`}></div>
+                  <span className={`text-[11px] font-medium transition-colors ${selectedCategory === cat ? 'text-gray-900 font-bold' : 'text-gray-400 group-hover:text-gray-600'}`}>{cat}</span>
                </div>
             ))}
          </div>
@@ -276,16 +281,16 @@ const StoreApp: React.FC = () => {
                const qty = cart.find(i => i.id === p.id)?.quantity || 0;
                return (
                   <div key={p.id} className="flex gap-4 mb-8 group animate-in slide-in-from-bottom-2 duration-500">
-                     <div className="w-24 h-24 rounded-[20px] bg-gray-50 overflow-hidden shrink-0 relative shadow-[0_4px_15px_rgba(0,0,0,0.03)] border border-gray-100">
-                        <img src={p.imageUrl} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="" />
+                     <div className="w-24 h-24 rounded-[20px] bg-gray-50 overflow-hidden shrink-0 relative shadow-[0_4px_15px_rgba(0,0,0,0.03)] border border-gray-100/50">
+                        <img src={p.imageUrl} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 mix-blend-multiply" alt="" />
                      </div>
                      <div className="flex-1 flex flex-col justify-between py-1">
                         <div>
                            <h4 className="font-bold text-gray-900 text-[16px] leading-tight mb-2">{p.name}</h4>
                            <div className="flex items-center flex-wrap gap-1.5">
-                              <span className="text-[10px] bg-gray-50 text-gray-500 px-2 py-0.5 rounded-md font-medium border border-gray-100">{p.spec}</span>
+                              <span className="text-[10px] bg-gray-50 text-gray-500 px-2 py-0.5 rounded-md font-bold border border-gray-100">{p.spec}</span>
                               {p.maxOrder < 999 && (
-                                <span className="text-[10px] text-orange-600 px-2 py-0.5 rounded-md font-medium bg-orange-50 border border-orange-100">
+                                <span className="text-[10px] text-orange-600 px-2 py-0.5 rounded-md font-bold bg-orange-50 border border-orange-100">
                                    限 {p.maxOrder}
                                 </span>
                               )}
@@ -294,13 +299,13 @@ const StoreApp: React.FC = () => {
                         <div className="flex justify-between items-end">
                            <div className="flex items-baseline gap-0.5">
                               <span className="text-xs font-bold text-[#00B42A]">¥</span>
-                              <span className="text-[#00B42A] font-extrabold text-xl">{p.price.toFixed(2)}</span>
-                              <span className="text-gray-400 text-xs font-normal ml-1">/{p.unit}</span>
+                              <span className="text-[#00B42A] font-black text-xl">{p.price.toFixed(2)}</span>
+                              <span className="text-gray-400 text-xs font-medium ml-1">/{p.unit}</span>
                            </div>
                            
-                           {/* Stepper - Invisible Borders */}
+                           {/* Stepper - Invisible Borders & Haptic Feedback */}
                            {qty > 0 ? (
-                             <div className="flex items-center gap-3 bg-gray-50 p-1 rounded-full">
+                             <div className="flex items-center gap-3 bg-gray-50 p-1 rounded-full shadow-inner">
                                 <button onClick={() => updateCart(p, -1)} className="w-7 h-7 rounded-full bg-white shadow-sm flex items-center justify-center text-gray-600 active:scale-90 transition-transform hover:bg-gray-50">
                                    <Minus size={14} strokeWidth={3} />
                                 </button>
@@ -310,7 +315,7 @@ const StoreApp: React.FC = () => {
                                 </button>
                              </div>
                            ) : (
-                             <button onClick={() => updateCart(p, 1)} className="w-8 h-8 rounded-full bg-[#00B42A] flex items-center justify-center text-white active:scale-90 transition-transform shadow-lg shadow-green-500/20 hover:bg-[#009C25]">
+                             <button onClick={() => updateCart(p, 1)} className="w-8 h-8 rounded-full bg-[#00B42A] flex items-center justify-center text-white active:scale-90 transition-transform shadow-[0_4px_12px_rgba(0,180,42,0.3)] hover:bg-[#009C25] hover:shadow-[0_6px_15px_rgba(0,180,42,0.4)]">
                                 <Plus size={16} strokeWidth={3} />
                              </button>
                            )}
@@ -322,17 +327,18 @@ const StoreApp: React.FC = () => {
          </div>
       </div>
 
-      {/* Cart Floating Bar - Glassmorphism */}
+      {/* Cart Floating Bar - Glassmorphism & Suspension */}
       {cartCount > 0 && (
          <div className="absolute bottom-6 left-5 right-5 z-30 animate-in slide-in-from-bottom-4 duration-300">
-             <div className="bg-[#1D2129]/90 backdrop-blur-xl text-white p-2 pl-6 rounded-full shadow-[0_20px_40px_rgba(0,0,0,0.25)] flex items-center justify-between border border-white/10 ring-1 ring-white/5">
+             <div className="bg-[#1D2129]/80 backdrop-blur-2xl text-white p-2 pl-6 rounded-full shadow-[0_20px_40px_rgba(0,0,0,0.25)] flex items-center justify-between border border-white/10 ring-1 ring-white/5 transition-transform hover:-translate-y-1">
                 <div className="flex flex-col">
                    <div className="text-lg font-bold leading-none flex items-baseline gap-1">
-                      <span className="text-xs text-gray-400">¥</span>{cartTotal.toFixed(2)}
+                      <span className="text-xs text-gray-400 font-medium">合计</span>
+                      <span className="text-xs text-[#00B42A]">¥</span>{cartTotal.toFixed(2)}
                    </div>
                    <div className="text-[10px] text-gray-400 mt-0.5 font-medium">已选 {cartCount} 件商品</div>
                 </div>
-                <button className="bg-[#00B42A] hover:bg-[#00a326] text-white px-8 py-3.5 rounded-full font-bold text-sm shadow-lg shadow-green-500/30 active:scale-95 transition-all">
+                <button className="bg-[#00B42A] hover:bg-[#00a326] text-white px-8 py-3.5 rounded-full font-bold text-sm shadow-[0_8px_20px_rgba(0,180,42,0.3)] active:scale-95 transition-all">
                    去结算
                 </button>
              </div>
@@ -347,7 +353,7 @@ const StoreApp: React.FC = () => {
        <div className="bg-white/80 backdrop-blur-md sticky top-0 z-20 border-b border-gray-50/50 transition-all">
           <div className="pt-14 pb-2 px-6 flex justify-between items-center">
              <h1 className="text-2xl font-extrabold text-gray-900 tracking-tight">订单列表</h1>
-             <div className="p-2.5 bg-white border border-gray-100 rounded-full text-gray-600 hover:bg-gray-50 transition-colors cursor-pointer shadow-sm"><Search size={20} /></div>
+             <div className="p-2.5 bg-white border border-gray-100 rounded-full text-gray-600 hover:bg-gray-50 transition-colors cursor-pointer shadow-sm active:scale-95"><Search size={20} /></div>
           </div>
           <div className="flex px-6 mt-2 relative">
              {['today', 'history'].map((tab) => (
@@ -367,55 +373,55 @@ const StoreApp: React.FC = () => {
           {MOCK_ORDERS.map((order, index) => {
              const isModifiedDemo = index === 1; 
              
-             let statusConfig = { bg: "bg-green-100/50", text: "text-green-700", label: "已审核", icon: Check };
+             let statusConfig = { bg: "bg-green-50", text: "text-green-700", label: "已审核", icon: Check };
              if (order.status === OrderStatus.Auditing) {
-                statusConfig = { bg: "bg-blue-100/50", text: "text-blue-700", label: "审核中", icon: Clock };
+                statusConfig = { bg: "bg-blue-50", text: "text-blue-700", label: "审核中", icon: Clock };
              } else if (order.status === OrderStatus.Rejected) {
-                statusConfig = { bg: "bg-red-100/50", text: "text-red-700", label: "已驳回", icon: AlertCircle };
+                statusConfig = { bg: "bg-red-50", text: "text-red-700", label: "已驳回", icon: AlertCircle };
              }
 
              return (
-               <div key={order.id} className="bg-white rounded-[24px] p-5 shadow-[0_8px_30px_rgba(0,0,0,0.02)] border border-transparent active:scale-[0.99] transition-all hover:shadow-[0_12px_40px_rgba(0,0,0,0.05)] group relative overflow-hidden">
+               <div key={order.id} className="bg-white rounded-[24px] p-5 shadow-[0_8px_20px_rgba(0,0,0,0.02)] border border-transparent active:scale-[0.99] transition-all hover:shadow-[0_15px_40px_rgba(0,0,0,0.06)] group relative overflow-hidden">
                   <div className="flex justify-between items-center mb-5 relative z-10">
                      <div className="flex items-center gap-3">
-                        <div className={`w-10 h-10 rounded-2xl flex items-center justify-center font-bold text-sm ${statusConfig.bg} ${statusConfig.text}`}>
+                        <div className={`w-10 h-10 rounded-2xl flex items-center justify-center font-bold text-sm ${statusConfig.bg} ${statusConfig.text} shadow-sm`}>
                             <statusConfig.icon size={18} strokeWidth={3} />
                         </div>
                         <div>
                             <div className="text-gray-900 font-bold text-[15px]">{order.storeName}</div>
-                            <div className="text-xs text-gray-400 font-mono mt-0.5">{order.orderDate}</div>
+                            <div className="text-xs text-gray-400 font-mono mt-0.5 font-medium">{order.orderDate}</div>
                         </div>
                      </div>
-                     <span className={`text-[10px] px-2.5 py-1 rounded-full font-bold border ${statusConfig.bg.replace('50','100')} ${statusConfig.text} border-transparent`}>{statusConfig.label}</span>
+                     <span className={`text-[10px] px-2.5 py-1 rounded-full font-bold ${statusConfig.bg} ${statusConfig.text}`}>{statusConfig.label}</span>
                   </div>
 
                   {isModifiedDemo ? (
-                     <div className="mb-5 bg-orange-50/50 rounded-2xl p-4 border border-orange-100/50 relative overflow-hidden">
+                     <div className="mb-5 bg-orange-50/40 rounded-2xl p-4 border border-orange-100/50 relative overflow-hidden">
                         <div className="flex items-center justify-between mb-2">
                            <span className="font-bold text-gray-900 text-sm">土豆 (15kg)</span>
                            <ArrowRight size={14} className="text-orange-400" />
                            <span className="font-bold text-orange-600 text-sm bg-white px-2 py-0.5 rounded shadow-sm border border-orange-100">12kg</span>
                         </div>
-                        <div className="flex items-start gap-1.5 text-xs text-orange-700/70">
+                        <div className="flex items-start gap-1.5 text-xs text-orange-700/70 font-medium">
                            <Info size={14} className="shrink-0 mt-0.5" />
                            <span>库存不足，为您调整</span>
                         </div>
                      </div>
                   ) : (
-                     <div className="mb-5 pl-2 border-l-2 border-gray-100 py-1">
+                     <div className="mb-5 pl-3 border-l-2 border-gray-100 py-1">
                         <div className="flex items-baseline gap-1.5 mb-1">
-                            <span className="text-xs text-gray-400 font-medium">总计</span>
+                            <span className="text-xs text-gray-400 font-bold">总计</span>
                             <span className="text-xl font-extrabold text-gray-900 tracking-tight">¥{(order.totalQuantity * 45).toFixed(0)}</span>
                         </div>
-                        <div className="text-xs text-gray-400">
-                            共 <span className="font-medium text-gray-700">{order.totalQuantity}</span> 件商品 · {order.itemCount} 种品类
+                        <div className="text-xs text-gray-400 font-medium">
+                            共 <span className="font-bold text-gray-700">{order.totalQuantity}</span> 件商品 · {order.itemCount} 种品类
                         </div>
                      </div>
                   )}
 
                   <div className="flex justify-end pt-2 border-t border-gray-50">
-                     <button className="bg-gray-900 text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow-lg shadow-gray-900/10 active:scale-95 transition-all hover:bg-black flex items-center gap-2 group-hover:pr-4">
-                        查看详情 <ChevronRight size={14} className="opacity-0 w-0 group-hover:opacity-100 group-hover:w-auto transition-all" />
+                     <button className="bg-white border border-gray-200 text-gray-800 text-xs font-bold px-5 py-2.5 rounded-xl shadow-sm active:scale-95 transition-all hover:bg-gray-50 hover:border-gray-300 flex items-center gap-2 group-hover:pr-4">
+                        查看详情 <ChevronRight size={14} className="opacity-0 w-0 group-hover:opacity-100 group-hover:w-auto transition-all text-gray-400" />
                      </button>
                   </div>
                </div>
@@ -423,10 +429,10 @@ const StoreApp: React.FC = () => {
           })}
           
           <div className="py-12 flex flex-col items-center justify-center text-gray-300 gap-3">
-              <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center">
+              <div className="w-12 h-12 bg-gray-50 rounded-full flex items-center justify-center">
                   <ClipboardList size={24} className="text-gray-300" />
               </div>
-              <span className="text-xs font-medium">暂无更多订单</span>
+              <span className="text-xs font-bold tracking-wide text-gray-400">暂无更多订单</span>
           </div>
        </div>
     </div>
@@ -434,10 +440,10 @@ const StoreApp: React.FC = () => {
 
   const renderProfile = () => (
     <div className="flex flex-col h-full bg-[#F7F8FA]">
-       <div className="bg-white pt-20 pb-10 px-6 rounded-b-[40px] shadow-[0_15px_40px_rgba(0,0,0,0.03)] relative z-10 mb-6 border-b border-gray-50">
+       <div className="bg-white pt-20 pb-10 px-6 rounded-b-[40px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] relative z-10 mb-6 border-b border-gray-50">
           <div className="flex items-center gap-6">
              <div className="relative group cursor-pointer">
-                 <div className="w-20 h-20 rounded-full p-1 border-2 border-gray-50 group-hover:border-[#00B42A] transition-colors">
+                 <div className="w-20 h-20 rounded-full p-1 border-2 border-gray-50 group-hover:border-[#00B42A] transition-colors shadow-sm">
                     <img src="https://picsum.photos/id/64/200/200" className="w-full h-full rounded-full object-cover" alt="" />
                  </div>
                  <div className="absolute bottom-1 right-1 w-6 h-6 bg-[#00B42A] rounded-full border-4 border-white flex items-center justify-center shadow-md">
@@ -446,25 +452,25 @@ const StoreApp: React.FC = () => {
              </div>
              <div>
                 <h2 className="text-2xl font-extrabold text-gray-900">李经理</h2>
-                <div className="text-xs text-gray-500 mt-2 flex items-center gap-2">
-                    <span className="bg-gray-100 px-2.5 py-1 rounded-md text-gray-600 font-bold">采购经理</span>
+                <div className="text-xs text-gray-500 mt-2 flex items-center gap-2 font-medium">
+                    <span className="bg-gray-100 px-2.5 py-1 rounded-md text-gray-700 font-bold border border-gray-200">采购经理</span>
                     <span className="text-gray-300">|</span>
                     <span>幸福超市 (中山路店)</span>
                 </div>
              </div>
           </div>
           
-          {/* Quick Stats */}
-          <div className="flex mt-10 divide-x divide-gray-100">
-             <div className="flex-1 text-center">
+          {/* Quick Stats - No Dividers */}
+          <div className="flex mt-10 gap-2">
+             <div className="flex-1 text-center bg-gray-50 rounded-2xl py-3 border border-gray-100">
                 <div className="text-xl font-extrabold text-gray-900">28</div>
                 <div className="text-[10px] text-gray-400 font-bold mt-1 uppercase tracking-wider">本月订单</div>
              </div>
-             <div className="flex-1 text-center">
+             <div className="flex-1 text-center bg-gray-50 rounded-2xl py-3 border border-gray-100">
                 <div className="text-xl font-extrabold text-gray-900">12.8k</div>
                 <div className="text-[10px] text-gray-400 font-bold mt-1 uppercase tracking-wider">订货金额</div>
              </div>
-             <div className="flex-1 text-center">
+             <div className="flex-1 text-center bg-gray-50 rounded-2xl py-3 border border-gray-100">
                 <div className="text-xl font-extrabold text-[#00B42A]">96%</div>
                 <div className="text-[10px] text-gray-400 font-bold mt-1 uppercase tracking-wider">通过率</div>
              </div>
@@ -479,7 +485,7 @@ const StoreApp: React.FC = () => {
                  { icon: Phone, label: '通讯录', color: 'text-green-600 bg-green-50' },
              ].map((item,i) => (
                 <div key={i} className="flex items-center p-4 rounded-2xl hover:bg-gray-50 active:scale-[0.99] cursor-pointer group transition-all">
-                   <div className={`w-10 h-10 rounded-xl ${item.color} flex items-center justify-center mr-4 group-hover:scale-110 transition-transform`}>
+                   <div className={`w-10 h-10 rounded-xl ${item.color} flex items-center justify-center mr-4 group-hover:scale-110 transition-transform shadow-sm`}>
                       <item.icon size={18} strokeWidth={2.5} />
                    </div>
                    <span className="flex-1 text-sm font-bold text-gray-700 group-hover:text-gray-900 transition-colors">{item.label}</span>
@@ -490,11 +496,11 @@ const StoreApp: React.FC = () => {
 
           <div className="bg-white rounded-[28px] shadow-sm p-2 border border-white">
               <div className="flex items-center p-4 rounded-2xl hover:bg-gray-50 active:scale-[0.99] cursor-pointer group transition-all">
-                  <div className="w-10 h-10 rounded-xl bg-gray-100 text-gray-500 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                  <div className="w-10 h-10 rounded-xl bg-gray-100 text-gray-500 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform shadow-sm">
                     <Info size={18} strokeWidth={2.5} />
                   </div>
                   <span className="flex-1 text-sm font-bold text-gray-700">版本信息</span>
-                  <span className="text-xs text-gray-400 mr-2 font-medium bg-gray-50 px-2 py-1 rounded-md">v2.0.1</span>
+                  <span className="text-xs text-gray-400 mr-2 font-bold bg-gray-50 px-2 py-1 rounded-md">v2.0.1</span>
               </div>
           </div>
           
@@ -518,9 +524,9 @@ const StoreApp: React.FC = () => {
           {activeTab === 'profile' && renderProfile()}
        </div>
 
-       {/* Custom Tab Bar - Clean Minimalist */}
+       {/* Custom Tab Bar - Clean Minimalist with diffuse shadow */}
        {activeTab !== 'shop' && (
-         <div className="h-[96px] bg-white/95 backdrop-blur-2xl border-t border-gray-100 flex items-center justify-around pb-8 shrink-0 z-40 relative">
+         <div className="h-[96px] bg-white/95 backdrop-blur-2xl border-t border-gray-100 flex items-center justify-around pb-8 shrink-0 z-40 relative shadow-[0_-10px_40px_rgba(0,0,0,0.03)]">
             {[
                 { id: 'home', icon: Home, label: '首页' },
                 { id: 'shop', icon: ShoppingBag, label: '下单' },

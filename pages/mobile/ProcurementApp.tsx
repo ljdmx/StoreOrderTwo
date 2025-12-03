@@ -78,28 +78,32 @@ const ProcurementApp: React.FC = () => {
   // --- Login Screen ---
   if (!isLoggedIn) {
     return (
-      <div className="flex flex-col h-full bg-[#F7F8FA] relative overflow-hidden font-sans selection:bg-blue-100">
+      <div className="flex flex-col h-full bg-[#F7F8FA] relative overflow-hidden font-sans selection:bg-green-100">
         <div className="flex-1 flex flex-col items-center justify-center p-8 z-10 animate-in fade-in duration-700">
-           <div className="w-24 h-24 bg-white rounded-[2rem] flex items-center justify-center mb-8 shadow-[0_20px_40px_rgba(0,180,42,0.15)] ring-1 ring-green-50">
+           <div className="w-24 h-24 bg-white rounded-[2rem] flex items-center justify-center mb-8 shadow-[0_20px_40px_rgba(0,180,42,0.15)] ring-1 ring-green-50/50 transform transition-transform hover:scale-105 duration-500">
               <ClipboardList size={40} className="text-[#00B42A]" strokeWidth={2} />
            </div>
            <h1 className="text-2xl font-extrabold text-gray-900 mb-2 tracking-tight">日新达采购端</h1>
-           <p className="text-gray-400 text-sm text-center mb-12">精准审核 · 数据驱动</p>
+           <p className="text-gray-400 text-sm text-center mb-12 font-medium tracking-wide">精准审核 · 数据驱动</p>
            
            <div className="w-full space-y-4">
               <div className="space-y-4 mb-8">
-                <input type="text" placeholder="工号" className="w-full bg-white border-none rounded-2xl px-5 py-4 text-sm shadow-sm focus:ring-2 focus:ring-[#00B42A]/20 transition-all outline-none placeholder:text-gray-300" />
-                <input type="password" placeholder="密码" className="w-full bg-white border-none rounded-2xl px-5 py-4 text-sm shadow-sm focus:ring-2 focus:ring-[#00B42A]/20 transition-all outline-none placeholder:text-gray-300" />
+                <div className="group relative">
+                  <input type="text" placeholder="工号" className="w-full bg-white border-none rounded-2xl px-5 py-4 text-sm shadow-[0_4px_15px_rgba(0,0,0,0.02)] focus:ring-2 focus:ring-[#00B42A] focus:shadow-lg transition-all outline-none placeholder:text-gray-300" />
+                </div>
+                <div className="group relative">
+                  <input type="password" placeholder="密码" className="w-full bg-white border-none rounded-2xl px-5 py-4 text-sm shadow-[0_4px_15px_rgba(0,0,0,0.02)] focus:ring-2 focus:ring-[#00B42A] focus:shadow-lg transition-all outline-none placeholder:text-gray-300" />
+                </div>
               </div>
 
               <button 
                 onClick={() => setIsLoggedIn(true)}
-                className="w-full bg-[#00B42A] text-white py-4 rounded-2xl font-bold text-base shadow-lg shadow-green-500/30 active:scale-[0.98] transition-all hover:bg-[#009C25]"
+                className="w-full bg-[#00B42A] text-white py-4 rounded-2xl font-bold text-base shadow-[0_10px_25px_rgba(0,180,42,0.3)] active:scale-[0.98] transition-all hover:bg-[#009C25] hover:shadow-[0_15px_30px_rgba(0,180,42,0.4)]"
               >
                 登录工作台
               </button>
               <div className="text-center pt-2">
-                  <span className="text-gray-400 text-sm hover:text-gray-600 cursor-pointer">忘记密码请联系管理员</span>
+                  <span className="text-gray-400 text-sm hover:text-gray-600 cursor-pointer font-medium">忘记密码请联系管理员</span>
               </div>
            </div>
         </div>
@@ -112,53 +116,53 @@ const ProcurementApp: React.FC = () => {
   const renderHome = () => (
     <div className="flex flex-col h-full bg-[#F7F8FA] font-sans">
       {/* Sticky Header */}
-      <div className="px-6 pt-14 pb-4 bg-white/90 backdrop-blur-xl sticky top-0 z-30 border-b border-gray-50/50 shadow-sm">
+      <div className="px-6 pt-14 pb-4 bg-white/90 backdrop-blur-xl sticky top-0 z-30 border-b border-gray-50/50 shadow-sm transition-all">
         <div className="flex justify-between items-center mb-5">
            <div>
              <h1 className="text-2xl font-extrabold text-gray-900 tracking-tight leading-none">您好，张审核员</h1>
-             <div className="flex items-center gap-1.5 text-gray-400 text-xs mt-2 font-medium">
+             <div className="flex items-center gap-1.5 text-gray-400 text-xs mt-2 font-medium bg-gray-50/50 w-fit px-2 py-1 rounded-full border border-gray-100">
                <MapPin size={12} strokeWidth={2.5} /> <span className="truncate max-w-[200px]">云南昆明区域采购中心</span>
              </div>
            </div>
-           <div className="relative p-2.5 bg-gray-50 rounded-full active:scale-90 transition-transform cursor-pointer hover:bg-gray-100">
+           <div className="relative p-2.5 bg-gray-50 rounded-full active:scale-90 transition-transform cursor-pointer hover:bg-gray-100 border border-gray-100">
              <Bell size={20} className="text-gray-600" strokeWidth={2} />
              <span className="absolute top-2 right-2.5 w-2 h-2 bg-[#F53F3F] rounded-full border border-white"></span>
            </div>
         </div>
         
-        <div className="bg-gray-50 rounded-2xl flex items-center px-4 py-3.5 transition-all focus-within:bg-white focus-within:ring-2 focus-within:ring-[#00B42A]/10 focus-within:shadow-md">
+        <div className="bg-gray-50 rounded-2xl flex items-center px-4 py-3.5 transition-all focus-within:bg-white focus-within:ring-2 focus-within:ring-[#00B42A]/10 focus-within:shadow-[0_4px_15px_rgba(0,0,0,0.05)] border border-transparent focus-within:border-transparent">
            <Search size={18} className="text-gray-400 mr-3" />
            <input type="text" placeholder="单号 / 门店 / 商品" className="flex-1 bg-transparent outline-none text-sm text-gray-900 placeholder:text-gray-400" />
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto px-6 pb-28 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+      <div className="flex-1 overflow-y-auto px-6 pb-28 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] scroll-smooth">
         {/* Tile Dashboard - Magnetic Design */}
         <div className="mt-6 mb-8">
             <div className="flex justify-between items-center mb-4 px-1">
                  <h3 className="font-bold text-gray-900 text-lg">工作台</h3>
-                 <span className="text-xs text-gray-400 font-medium bg-white px-2 py-1 rounded-lg border border-gray-100 shadow-sm">实时数据</span>
+                 <span className="text-[10px] text-gray-400 font-bold bg-white px-2 py-1 rounded-lg border border-gray-100 shadow-sm uppercase tracking-wider">Real-time</span>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-               {/* Pending - Highlighted with Dark Glass */}
+               {/* Pending - Highlighted with Light Mint Green */}
                <div 
-                  className="bg-[#1D2129] rounded-[32px] p-6 relative overflow-hidden group shadow-[0_15px_30px_rgba(0,0,0,0.15)] cursor-pointer active:scale-[0.98] transition-all" 
+                  className="bg-[#E3F9E9] rounded-[32px] p-6 relative overflow-hidden group shadow-[0_15px_30px_rgba(0,180,42,0.1)] cursor-pointer active:scale-[0.98] transition-all hover:shadow-[0_20px_40px_rgba(0,180,42,0.15)]" 
                   onClick={() => setActiveTab('order')}
                >
-                  {/* Subtle Gradient Orb */}
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-3xl -mr-10 -mt-10"></div>
+                  {/* Subtle Blob */}
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-[#00B42A]/10 rounded-full blur-3xl -mr-10 -mt-10 transition-colors"></div>
                   
                   <div className="relative z-10 flex flex-col h-full justify-between">
                      <div>
-                        <span className="text-white/60 text-xs font-bold uppercase tracking-wider">待审核订单</span>
-                        <div className="text-5xl font-extrabold text-white mt-2 mb-1 group-hover:scale-105 transition-transform origin-left">{stats.pending}</div>
+                        <span className="text-[#00B42A]/80 text-xs font-bold uppercase tracking-wider">待审核订单</span>
+                        <div className="text-5xl font-extrabold text-[#00B42A] mt-2 mb-1 group-hover:scale-105 transition-transform origin-left">{stats.pending}</div>
                      </div>
-                     <div className="flex items-center text-[#4CD964] text-[11px] font-bold gap-1 bg-white/10 w-fit px-2 py-1 rounded-lg backdrop-blur-sm border border-white/5">
+                     <div className="flex items-center text-[#00B42A] text-[11px] font-bold gap-1 bg-white/60 w-fit px-2 py-1 rounded-lg backdrop-blur-sm border border-white/40 shadow-sm">
                         <TrendingUp size={12} /> +2 新增
                      </div>
                   </div>
-                  <div className="absolute bottom-6 right-6 text-white/10 group-hover:text-white/30 transition-colors">
+                  <div className="absolute bottom-6 right-6 text-[#00B42A]/20 group-hover:text-[#00B42A]/40 transition-colors transform group-hover:translate-x-1">
                      <ArrowRight size={24} />
                   </div>
                </div>
@@ -167,19 +171,19 @@ const ProcurementApp: React.FC = () => {
                <div className="grid grid-rows-2 gap-4">
                   <div className="bg-white rounded-[28px] p-5 flex items-center justify-between shadow-[0_8px_20px_rgba(0,0,0,0.02)] border border-transparent hover:shadow-md transition-shadow">
                       <div>
-                         <span className="text-gray-400 text-xs font-medium block mb-1">审核中</span>
-                         <span className="text-2xl font-bold text-blue-600 block">{stats.auditing}</span>
+                         <span className="text-gray-400 text-xs font-bold block mb-1 uppercase tracking-wider">审核中</span>
+                         <span className="text-2xl font-black text-blue-600 block">{stats.auditing}</span>
                       </div>
-                      <div className="w-10 h-10 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center shadow-sm">
                          <ClipboardList size={18} />
                       </div>
                   </div>
                   <div className="bg-white rounded-[28px] p-5 flex items-center justify-between shadow-[0_8px_20px_rgba(0,0,0,0.02)] border border-transparent hover:shadow-md transition-shadow">
                       <div>
-                         <span className="text-gray-400 text-xs font-medium block mb-1">今日已审</span>
-                         <span className="text-2xl font-bold text-[#00B42A] block">{stats.approved}</span>
+                         <span className="text-gray-400 text-xs font-bold block mb-1 uppercase tracking-wider">今日已审</span>
+                         <span className="text-2xl font-black text-[#00B42A] block">{stats.approved}</span>
                       </div>
-                      <div className="w-10 h-10 rounded-2xl bg-green-50 text-green-600 flex items-center justify-center">
+                      <div className="w-10 h-10 rounded-2xl bg-green-50 text-green-600 flex items-center justify-center shadow-sm">
                          <Check size={18} strokeWidth={3} />
                       </div>
                   </div>
@@ -187,10 +191,10 @@ const ProcurementApp: React.FC = () => {
             </div>
             
             {/* Warning Card - Soft Alert */}
-            <div className="mt-4 bg-[#FFF7E8] rounded-[24px] p-5 flex items-center justify-between border border-orange-100/50 relative overflow-hidden">
+            <div className="mt-4 bg-[#FFF7E8] rounded-[24px] p-5 flex items-center justify-between border border-orange-100/50 relative overflow-hidden shadow-sm">
                 <div className="absolute -left-4 -top-4 w-20 h-20 bg-orange-100 rounded-full blur-xl opacity-60"></div>
                 <div className="flex items-center gap-4 relative z-10">
-                   <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-orange-500 shadow-sm">
+                   <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-orange-500 shadow-sm border border-orange-50">
                       <Store size={22} />
                    </div>
                    <div>
@@ -206,7 +210,7 @@ const ProcurementApp: React.FC = () => {
         <div className="mt-8">
            <div className="flex justify-between items-center mb-5 px-1">
               <h3 className="font-bold text-gray-900 text-lg">每日自动汇总</h3>
-              <span className="text-[#00B42A] text-xs font-bold bg-green-50 px-3 py-1.5 rounded-full cursor-pointer hover:bg-green-100 transition-colors" onClick={() => setActiveTab('purchase')}>查看详情</span>
+              <span className="text-[#00B42A] text-xs font-bold bg-green-50 px-3 py-1.5 rounded-full cursor-pointer hover:bg-green-100 transition-colors shadow-sm" onClick={() => setActiveTab('purchase')}>查看详情</span>
            </div>
            
            <div className="grid grid-cols-2 gap-4">
@@ -215,7 +219,7 @@ const ProcurementApp: React.FC = () => {
                   { label: '下单门店数', value: '128', icon: Store, color: 'text-purple-600 bg-purple-50' }
               ].map((item, i) => (
                   <div key={i} className="bg-white p-6 rounded-[28px] shadow-[0_8px_20px_rgba(0,0,0,0.02)] border border-transparent flex flex-col items-center justify-center gap-4 py-8 cursor-pointer active:scale-95 transition-all hover:shadow-[0_12px_30px_rgba(0,0,0,0.06)]" onClick={() => setActiveTab('purchase')}>
-                     <div className={`w-16 h-16 ${item.color} rounded-[24px] flex items-center justify-center mb-1 shadow-sm`}>
+                     <div className={`w-16 h-16 ${item.color} rounded-[24px] flex items-center justify-center mb-1 shadow-sm border border-white`}>
                         <item.icon size={32} strokeWidth={1.5} />
                      </div>
                      <div className="text-center">
@@ -237,7 +241,7 @@ const ProcurementApp: React.FC = () => {
                <div className="flex items-center gap-2">
                    <h1 className="text-2xl font-extrabold text-gray-900 tracking-tight">审核订单</h1>
                </div>
-               <div className="p-2.5 bg-gray-50 rounded-full text-gray-600 hover:bg-gray-100 transition-colors cursor-pointer"><Search size={20} /></div>
+               <div className="p-2.5 bg-gray-50 rounded-full text-gray-600 hover:bg-gray-100 transition-colors cursor-pointer active:scale-95"><Search size={20} /></div>
            </div>
            <div className="px-6 flex mt-2 relative">
                {[OrderStatus.Submitted, OrderStatus.Auditing, OrderStatus.Approved].map(st => (
@@ -264,8 +268,8 @@ const ProcurementApp: React.FC = () => {
                    onClick={() => !isLocked && setSelectedOrder(order)}
                  >
                     {isLocked && (
-                        <div className="absolute inset-0 bg-white/60 backdrop-blur-[3px] z-10 flex flex-col items-center justify-center rounded-[24px]">
-                             <div className="bg-white/90 text-orange-600 px-5 py-3 rounded-2xl font-bold text-sm flex items-center gap-2 shadow-lg border border-orange-100 animate-in fade-in zoom-in duration-300">
+                        <div className="absolute inset-0 bg-white/60 backdrop-blur-[4px] z-10 flex flex-col items-center justify-center rounded-[24px]">
+                             <div className="bg-white/90 text-orange-600 px-5 py-3 rounded-2xl font-bold text-sm flex items-center gap-2 shadow-xl border border-orange-100 animate-in fade-in zoom-in duration-300">
                                 <Lock size={16} /> 正在被李审核员锁定
                              </div>
                         </div>
@@ -281,7 +285,7 @@ const ProcurementApp: React.FC = () => {
                              <span className="text-[10px] text-gray-400 font-mono tracking-wide">#{order.id.slice(-6)}</span>
                           </div>
                        </div>
-                       <span className="text-xs text-gray-400 font-medium bg-gray-50 px-2 py-1 rounded-lg">{order.orderDate.split(' ')[1]}</span>
+                       <span className="text-xs text-gray-400 font-medium bg-gray-50 px-2 py-1 rounded-lg border border-gray-100">{order.orderDate.split(' ')[1]}</span>
                     </div>
                     
                     <div className="bg-gray-50 rounded-2xl p-4 mb-4 flex justify-between items-center border border-gray-100">
@@ -325,12 +329,12 @@ const ProcurementApp: React.FC = () => {
         </div>
 
         <div className="flex-1 overflow-y-auto p-6 space-y-5 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
-           {/* Summary Bar - Dark Theme */}
-           <div className="bg-[#1D2129] p-6 rounded-[32px] flex justify-between items-center shadow-[0_15px_30px_rgba(0,0,0,0.15)] text-white relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full blur-3xl -mr-10 -mt-10"></div>
-              <span className="text-sm font-bold opacity-80 relative z-10 flex items-center gap-2"><LayoutGrid size={16}/> 今日汇总</span>
+           {/* Summary Bar - Light Mint Green Background */}
+           <div className="bg-[#E3F9E9] p-6 rounded-[32px] flex justify-between items-center shadow-[0_15px_30px_rgba(0,180,42,0.1)] relative overflow-hidden group hover:shadow-[0_20px_40px_rgba(0,180,42,0.15)] transition-shadow">
+              <div className="absolute top-0 right-0 w-40 h-40 bg-[#00B42A]/5 rounded-full blur-3xl -mr-10 -mt-10 transition-colors"></div>
+              <span className="text-sm font-bold text-gray-900 opacity-90 relative z-10 flex items-center gap-2"><LayoutGrid size={16} className="text-[#00B42A]"/> 今日汇总</span>
               <div className="text-right relative z-10">
-                 <span className="text-[10px] text-gray-400 font-medium block mb-1 uppercase tracking-wider">商品总需求量</span>
+                 <span className="text-[10px] text-gray-400 font-bold block mb-1 uppercase tracking-wider">商品总需求量</span>
                  <span className="text-[#00B42A] font-extrabold text-3xl tracking-tight">{purchaseSummary.reduce((a,b)=>a+b.totalQty,0)}</span>
               </div>
            </div>
@@ -340,14 +344,14 @@ const ProcurementApp: React.FC = () => {
               {purchaseSummary.map(item => (
                  <div key={item.id} className="bg-white p-4 rounded-[24px] flex gap-4 shadow-[0_4px_20px_rgba(0,0,0,0.02)] border border-transparent active:scale-[0.99] transition-all hover:shadow-md">
                     <div className="w-20 h-20 rounded-[20px] bg-gray-50 overflow-hidden relative shadow-inner shrink-0 border border-gray-100">
-                       <img src={item.image} className="w-full h-full object-cover" alt="" />
+                       <img src={item.image} className="w-full h-full object-cover mix-blend-multiply" alt="" />
                     </div>
                     <div className="flex-1 flex flex-col justify-center gap-2">
                        <h4 className="font-bold text-gray-900 leading-tight text-[15px]">{item.name}</h4>
                        
                        {/* Visual Bar for Stores */}
                        <div className="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
-                          <div className="bg-[#00B42A] h-full rounded-full" style={{width: `${Math.min(100, item.storeCount * 10)}%`}}></div>
+                          <div className="bg-[#00B42A] h-full rounded-full transition-all duration-1000 ease-out" style={{width: `${Math.min(100, item.storeCount * 10)}%`}}></div>
                        </div>
                        
                        <div className="flex items-center gap-2">
@@ -386,7 +390,7 @@ const ProcurementApp: React.FC = () => {
      return (
        <div className="absolute inset-0 z-50 bg-[#F7F8FA] flex flex-col animate-in slide-in-from-bottom duration-300">
           <div className="bg-white pt-14 pb-4 px-4 flex items-center justify-between shadow-sm sticky top-0 z-20 border-b border-gray-50">
-             <button onClick={() => setSelectedOrder(null)} className="w-10 h-10 -ml-2 text-gray-800 hover:bg-gray-100 rounded-full transition-colors flex items-center justify-center">
+             <button onClick={() => setSelectedOrder(null)} className="w-10 h-10 -ml-2 text-gray-800 hover:bg-gray-100 rounded-full transition-colors flex items-center justify-center active:scale-90">
                 <ChevronRight size={24} className="rotate-180" />
              </button>
              <h1 className="text-base font-bold text-gray-900">审核详情</h1>
@@ -412,7 +416,7 @@ const ProcurementApp: React.FC = () => {
                    <div key={idx} className="bg-white p-5 rounded-[24px] shadow-sm border border-transparent transition-shadow hover:shadow-md">
                       <div className="flex gap-4 mb-5">
                          <div className="w-16 h-16 rounded-2xl bg-gray-50 overflow-hidden shrink-0 border border-gray-100 shadow-sm">
-                            <img src={getProductImage(item.productId)} className="w-full h-full object-cover" alt="" />
+                            <img src={getProductImage(item.productId)} className="w-full h-full object-cover mix-blend-multiply" alt="" />
                          </div>
                          <div className="flex-1">
                             <h4 className="font-bold text-gray-900 text-base">{item.productName}</h4>
@@ -425,7 +429,7 @@ const ProcurementApp: React.FC = () => {
                       </div>
                       
                       {/* Audit Input - Focus Glow */}
-                      <div className="bg-[#F9FAFB] p-5 rounded-[20px] border border-gray-100">
+                      <div className="bg-[#F9FAFB] p-5 rounded-[20px] border border-gray-100 group/input focus-within:ring-2 focus-within:ring-[#00B42A]/10 focus-within:bg-white transition-all">
                          <div className="flex justify-between items-center mb-4">
                             <span className="text-xs font-bold text-gray-500 flex items-center gap-1.5">
                                 <CheckCircle size={14} className="text-[#00B42A]" strokeWidth={2.5}/> 审核通过数量
@@ -450,7 +454,7 @@ const ProcurementApp: React.FC = () => {
                             <input 
                               type="text" 
                               placeholder="添加审核备注..." 
-                              className="w-full text-xs bg-white border-none rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-[#00B42A]/20 transition-all placeholder:text-gray-300 shadow-sm group-focus-within:shadow-md"
+                              className="w-full text-xs bg-white border-none rounded-xl px-4 py-3 outline-none transition-all placeholder:text-gray-300 shadow-sm focus:shadow-md"
                               disabled={!canEdit}
                               defaultValue={item.remark}
                             />
@@ -478,14 +482,14 @@ const ProcurementApp: React.FC = () => {
 
   const renderProfile = () => (
     <div className="flex flex-col h-full bg-[#F7F8FA]">
-       <div className="bg-white pt-20 pb-12 px-6 rounded-b-[40px] shadow-[0_15px_40px_rgba(0,0,0,0.03)] relative z-10 mb-6 border-b border-gray-50">
+       <div className="bg-white pt-20 pb-12 px-6 rounded-b-[40px] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.05)] relative z-10 mb-6 border-b border-gray-50">
           <div className="flex items-center gap-6">
              <div className="w-20 h-20 rounded-[24px] bg-gradient-to-tr from-gray-100 to-gray-200 p-1 shadow-inner">
                 <img src="https://picsum.photos/id/1005/200/200" className="w-full h-full rounded-[20px] object-cover border-2 border-white shadow-sm" alt="" />
              </div>
              <div>
                 <h2 className="text-2xl font-extrabold text-gray-900">张审核员</h2>
-                <div className="text-xs text-gray-500 mt-2 flex items-center gap-2">
+                <div className="text-xs text-gray-500 mt-2 flex items-center gap-2 font-medium">
                     <span className="bg-blue-50 text-blue-700 px-2.5 py-1 rounded-lg font-bold">高级审核</span>
                     <span className="text-gray-300">|</span>
                     <span className="font-mono">ID: 8902</span>
@@ -527,11 +531,11 @@ const ProcurementApp: React.FC = () => {
 
           <div className="bg-white rounded-[28px] shadow-sm p-2 border border-white">
               <div className="flex items-center p-4 rounded-2xl hover:bg-gray-50 active:scale-[0.99] cursor-pointer group transition-all">
-                  <div className="w-10 h-10 rounded-xl bg-gray-100 text-gray-500 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                  <div className="w-10 h-10 rounded-xl bg-gray-100 text-gray-500 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform shadow-sm">
                     <AlertCircle size={18} strokeWidth={2.5} />
                   </div>
                   <span className="flex-1 text-sm font-bold text-gray-700">版本信息</span>
-                  <span className="text-xs text-gray-400 mr-2 font-medium bg-gray-50 px-2 py-1 rounded-md">v2.0.1</span>
+                  <span className="text-xs text-gray-400 mr-2 font-bold bg-gray-50 px-2 py-1 rounded-md">v2.0.1</span>
               </div>
           </div>
           
@@ -559,7 +563,7 @@ const ProcurementApp: React.FC = () => {
        </div>
 
        {/* Custom Tab Bar - Clean Minimalist */}
-       <div className="h-[96px] bg-white/95 backdrop-blur-2xl border-t border-gray-100 flex items-center justify-around pb-8 shrink-0 z-40 relative shadow-[0_-10px_40px_rgba(0,0,0,0.02)]">
+       <div className="h-[96px] bg-white/95 backdrop-blur-2xl border-t border-gray-100 flex items-center justify-around pb-8 shrink-0 z-40 relative shadow-[0_-10px_40px_rgba(0,0,0,0.03)]">
           {[
               { id: 'home', icon: Home, label: '首页' },
               { id: 'order', icon: ClipboardList, label: '审核' },
